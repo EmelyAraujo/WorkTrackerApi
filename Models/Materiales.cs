@@ -4,9 +4,9 @@ namespace WorkTrackerApi.Models
     public class Materiales
     {
         [Key]
-        public int ObraId { get; set; }
+        public int MaterialId { get; set; }
 
-        public string? DuenoObra { get; set; }
+        public int obraId { get; set; }
 
         public DateTime? Fecha { get; set; }
 

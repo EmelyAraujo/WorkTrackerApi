@@ -15,9 +15,9 @@ namespace WorkTrackerApi.Migrations
                 name: "materiales",
                 columns: table => new
                 {
-                    ObraId = table.Column<int>(type: "INTEGER", nullable: false)
+                    MaterialId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DuenoObra = table.Column<string>(type: "TEXT", nullable: true),
+                    obraId = table.Column<int>(type: "INTEGER", nullable: false),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: true),
                     Cantidad = table.Column<int>(type: "INTEGER", nullable: false),
@@ -28,7 +28,20 @@ namespace WorkTrackerApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_materiales", x => x.ObraId);
+                    table.PrimaryKey("PK_materiales", x => x.MaterialId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "obras",
+                columns: table => new
+                {
+                    ObraId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DuenoObra = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_obras", x => x.ObraId);
                 });
         }
 
@@ -37,6 +50,9 @@ namespace WorkTrackerApi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "materiales");
+
+            migrationBuilder.DropTable(
+                name: "obras");
         }
     }
 }

@@ -7,6 +7,8 @@ namespace WorkTrackerApi.Data
     {
         public DbSet<Materiales> materiales => Set<Materiales>();
 
+        public DbSet<Obras> obras => Set<Obras>();
+
         public Contexto(DbContextOptions<Contexto> options)
                 : base(options) { }
     }

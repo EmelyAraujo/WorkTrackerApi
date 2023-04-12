@@ -19,7 +19,7 @@ namespace WorkTrackerApi.Migrations
 
             modelBuilder.Entity("WorkTrackerApi.Models.Materiales", b =>
                 {
-                    b.Property<int>("ObraId")
+                    b.Property<int>("MaterialId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -35,9 +35,6 @@ namespace WorkTrackerApi.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DuenoObra")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime?>("Fecha")
                         .HasColumnType("TEXT");
 
@@ -47,9 +44,26 @@ namespace WorkTrackerApi.Migrations
                     b.Property<string>("Suplidor")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ObraId");
+                    b.Property<int>("obraId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("MaterialId");
 
                     b.ToTable("materiales");
+                });
+
+            modelBuilder.Entity("WorkTrackerApi.Models.Obras", b =>
+                {
+                    b.Property<int>("ObraId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DuenoObra")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ObraId");
+
+                    b.ToTable("obras");
                 });
 #pragma warning restore 612, 618
         }

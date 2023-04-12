@@ -12,55 +12,55 @@ namespace WorkTrackerApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MaterialesController : ControllerBase
+    public class ObrasController : ControllerBase
     {
         private readonly Contexto _context;
 
-        public MaterialesController(Contexto context)
+        public ObrasController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: api/Materiales
+        // GET: api/Obras
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Materiales>>> Getmateriales()
+        public async Task<ActionResult<IEnumerable<Obras>>> Getobras()
         {
-          if (_context.materiales == null)
+          if (_context.obras == null)
           {
               return NotFound();
           }
-            return await _context.materiales.ToListAsync();
+            return await _context.obras.ToListAsync();
         }
 
-        // GET: api/Materiales/5
+        // GET: api/Obras/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Materiales>> GetMateriales(int id)
+        public async Task<ActionResult<Obras>> GetObras(int id)
         {
-          if (_context.materiales == null)
+          if (_context.obras == null)
           {
               return NotFound();
           }
-            var materiales = await _context.materiales.FindAsync(id);
+            var obras = await _context.obras.FindAsync(id);
 
-            if (materiales == null)
+            if (obras == null)
             {
                 return NotFound();
             }
 
-            return materiales;
+            return obras;
         }
 
-        // PUT: api/Materiales/5
+        // PUT: api/Obras/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMateriales(int id, Materiales materiales)
+        public async Task<IActionResult> PutObras(int id, Obras obras)
         {
-            if (id != materiales.MaterialId)
+            if (id != obras.ObraId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(materiales).State = EntityState.Modified;
+            _context.Entry(obras).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace WorkTrackerApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MaterialesExists(id))
+                if (!ObrasExists(id))
                 {
                     return NotFound();
                 }
@@ -81,44 +81,44 @@ namespace WorkTrackerApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Materiales
+        // POST: api/Obras
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Materiales>> PostMateriales(Materiales materiales)
+        public async Task<ActionResult<Obras>> PostObras(Obras obras)
         {
-          if (_context.materiales == null)
+          if (_context.obras == null)
           {
-              return Problem("Entity set 'Contexto.materiales'  is null.");
+              return Problem("Entity set 'Contexto.obras'  is null.");
           }
-            _context.materiales.Add(materiales);
+            _context.obras.Add(obras);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMateriales", new { id = materiales.MaterialId }, materiales);
+            return CreatedAtAction("GetObras", new { id = obras.ObraId }, obras);
         }
 
-        // DELETE: api/Materiales/5
+        // DELETE: api/Obras/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMateriales(int id)
+        public async Task<IActionResult> DeleteObras(int id)
         {
-            if (_context.materiales == null)
+            if (_context.obras == null)
             {
                 return NotFound();
             }
-            var materiales = await _context.materiales.FindAsync(id);
-            if (materiales == null)
+            var obras = await _context.obras.FindAsync(id);
+            if (obras == null)
             {
                 return NotFound();
             }
 
-            _context.materiales.Remove(materiales);
+            _context.obras.Remove(obras);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MaterialesExists(int id)
+        private bool ObrasExists(int id)
         {
-            return (_context.materiales?.Any(e => e.MaterialId == id)).GetValueOrDefault();
+            return (_context.obras?.Any(e => e.ObraId == id)).GetValueOrDefault();
         }
     }
 }
